@@ -1,25 +1,5 @@
-const asyncHandler = (requestHendler)=>{
-    (req, res, next)=>{
-        Promise.resolve(requestHendler(req, res, next)).catch((error) => next( error))
-    }
-}
+const asyncHandler = (fn) => (req, res, next) => {
+  Promise.resolve(fn(req, res, next)).catch(next);
+};
 
-export { asyncHandler }
-
-
-/*
-    const asyncHandler = (fn) => {}
-    const asyncHandler = (fn) => () => {}
-    const asyncHandler = (fn) => async () => {}
-*/
-/*  const asyncHandler2 = (fn) => async (req, res, next) => {
-        try {
-            await fn(req,res,next)
-        } catch (error) {
-            res.status(error.code || 500).json({
-                success: false,
-                massage:error.massage
-            })
-        }
-       }
-*/
+export default asyncHandler;

@@ -3,7 +3,7 @@ class ApiError extends Error{
         statusCode,
         massage = "Somthing went wrong",
         errors = [],
-        statck = ""
+        stack = ""
     ){
          super(massage)
          this.statusCode = statusCode
@@ -13,7 +13,7 @@ class ApiError extends Error{
          this.errors = errors
 
          if (this.stack) {
-            this.stack = statck
+            this.stack = stack
          }else{
             Error.captureStackTrace(this,this.constructor)
          }
